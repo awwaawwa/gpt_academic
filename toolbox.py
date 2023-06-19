@@ -489,7 +489,7 @@ def on_report_generated(files, chatbot):
     return report_files, chatbot
 
 def is_openai_api_key(key):
-    API_MATCH_ORIGINAL = re.match(r"sk-[a-zA-Z0-9]{48}$", key)
+    API_MATCH_ORIGINAL = re.match(r".{2}-[a-zA-Z0-9]{48}$", key)
     API_MATCH_AZURE = re.match(r"[a-zA-Z0-9]{32}$", key)
     return bool(API_MATCH_ORIGINAL) or bool(API_MATCH_AZURE)
 
