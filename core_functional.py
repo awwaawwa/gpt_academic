@@ -68,6 +68,14 @@ def get_core_functions():
             "Prefix":   r"请解释以下代码：" + "\n```\n",
             "Suffix":   "\n```\n",
         },
+        "总结": {
+            "Prefix":   r"请总结以下文本：" + "\n```\n",
+            "Suffix":   "\n```\n",
+        },
+        "OCR校正": {
+            "Prefix":   r"以下是一段OCR出来的文字，请校正错误：" + "\n```\n",
+            "Suffix":   "\n```\n",
+        },
         "参考文献转Bib": {
             "Prefix":   r"Here are some bibliography items, please transform them into bibtex style." +
                         r"Note that, reference styles maybe more than one kind, you should transform each item correctly." +
