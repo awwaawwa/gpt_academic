@@ -132,6 +132,7 @@ def predict(inputs, llm_kwargs, plugin_kwargs, chatbot, history=[], system_promp
         core_functional = core_functional.get_core_functions()
         if "PreProcess" in core_functional[additional_fn]: inputs = core_functional[additional_fn]["PreProcess"](inputs)  # 获取预处理函数（如果有的话）
         inputs = core_functional[additional_fn]["Prefix"] + inputs + core_functional[additional_fn]["Suffix"]
+        if core_functional[additional_fn].get("WithoutHistory", False): history.clear() # 清空历史记录
 
     raw_input = inputs
     logging.info(f'[raw_input] {raw_input}')
@@ -210,6 +211,12 @@ def predict(inputs, llm_kwargs, plugin_kwargs, chatbot, history=[], system_promp
                         history = clip_history(inputs=inputs, history=history, tokenizer=model_info[llm_kwargs['llm_model']]['tokenizer'], 
                                                max_token_limit=(model_info[llm_kwargs['llm_model']]['max_token'])) # history至少释放二分之一
                         chatbot[-1] = (chatbot[-1][0], "[Local Message] Reduce the length. 本次输入过长, 或历史数据过长. 历史缓存数据已部分释放, 您可以请再次尝试. (若再次失败则更可能是因为输入过长.)")
+                        model = llm_kwargs.get('llm_model', None)
+                        if model == 'gpt-3.5-turbo':
+                            print("切换到gpt-3.5-turbo-16k")
+                            llm_kwargs['llm_model'] = 'gpt-3.5-turbo-16k'
+                            yield from predict(inputs, llm_kwargs, plugin_kwargs, chatbot, history,system_prompt,stream,additional_fn)
+                            return
                         # history = []    # 清除历史
                     elif "does not exist" in error_msg:
                         chatbot[-1] = (chatbot[-1][0], f"[Local Message] Model {llm_kwargs['llm_model']} does not exist. 模型不存在, 或者您没有获得体验资格.")
