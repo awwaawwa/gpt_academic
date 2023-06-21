@@ -67,14 +67,23 @@ def get_core_functions():
         "解释代码": {
             "Prefix":   r"请解释以下代码：" + "\n```\n",
             "Suffix":   "\n```\n",
+            "WithoutHistory": True,
         },
         "总结": {
-            "Prefix":   r"请总结以下文本：" + "\n```\n",
-            "Suffix":   "\n```\n",
+            "Prefix":   r"请总结以下文本：" + "\n\n",
+            "Suffix":   "",
+            "WithoutHistory": True,
         },
         "OCR校正": {
-            "Prefix":   r"以下是一段OCR出来的文字，请校正错误：" + "\n```\n",
-            "Suffix":   "\n```\n",
+            "Prefix":   r"以下是一段OCR出来的文字，请校正错误：" + "\n\n",
+            "Suffix":   "",
+            "WithoutHistory": True,
+
+        },
+        "化简答案": {
+            "Prefix":   r"",
+            "Suffix":   "\n\n你是一名专业网络工程师，请阅读以上问题与解析，尽可能精简出一份方便记忆的答案：",
+            "WithoutHistory": True,
         },
         "参考文献转Bib": {
             "Prefix":   r"Here are some bibliography items, please transform them into bibtex style." +
