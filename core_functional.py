@@ -85,6 +85,11 @@ def get_core_functions():
             "Prefix":   r"",
             "Suffix":   "\n\n你是一名专业网络工程师，请阅读以上问题与解析，尽可能精简出一份方便记忆的答案：",
             "WithoutHistory": True,
+        },        
+        "提取重点": {
+            "Prefix":   r"请提取以下文本的重点：" + '\n\n',
+            "Suffix":   "",
+            "WithoutHistory": True,
         },
         "参考文献转Bib": {
             "Prefix":   r"Here are some bibliography items, please transform them into bibtex style." +
