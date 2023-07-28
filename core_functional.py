@@ -1,7 +1,7 @@
 # 'primary' 颜色对应 theme.py 中的 primary_hue
 # 'secondary' 颜色对应 theme.py 中的 neutral_hue
 # 'stop' 颜色对应 theme.py 中的 color_er
-# 默认按钮颜色是 secondary
+import importlib
 from toolbox import clear_line_break
 
 
@@ -14,7 +14,12 @@ def get_core_functions():
                         r"Furthermore, list all modification and explain the reasons to do so in markdown table." + "\n\n",
             # 后语
             "Suffix":   r"",
-            "Color":    r"secondary",    # 按钮颜色
+            # 按钮颜色 (默认 secondary)
+            "Color":    r"secondary",
+            # 按钮是否可见 (默认 True，即可见)
+            "Visible": True,
+            # 是否在触发时清除历史 (默认 False，即不处理之前的对话历史)
+            "AutoClearHistory": True
         },
         "中文学术润色": {
             "Prefix":   r"作为一名中文学术论文写作改进助理，你的任务是改进所提供文本的拼写、语法、清晰、简洁和整体可读性，" +
@@ -68,28 +73,28 @@ def get_core_functions():
         "解释代码": {
             "Prefix":   r"请解释以下代码：" + "\n```\n",
             "Suffix":   "\n```\n",
-            "WithoutHistory": True,
+            "AutoClearHistory": True,
         },
         "总结": {
             "Prefix":   r"请总结以下文本：" + "\n\n",
             "Suffix":   "",
-            "WithoutHistory": True,
+            "AutoClearHistory": True,
         },
         "OCR校正": {
             "Prefix":   r"以下是一段OCR出来的文字，请校正错误：" + "\n\n",
             "Suffix":   "",
-            "WithoutHistory": True,
+            "AutoClearHistory": True,
 
         },
         "化简答案": {
             "Prefix":   r"",
             "Suffix":   "\n\n你是一名专业网络工程师，请阅读以上问题与解析，尽可能精简出一份方便记忆的答案：",
-            "WithoutHistory": True,
+            "AutoClearHistory": True,
         },        
         "提取重点": {
             "Prefix":   r"请提取以下文本的重点：" + '\n\n',
             "Suffix":   "",
-            "WithoutHistory": True,
+            "AutoClearHistory": True,
         },
         "参考文献转Bib": {
             "Prefix":   r"Here are some bibliography items, please transform them into bibtex style." +
@@ -98,3 +103,15 @@ def get_core_functions():
             "Suffix":   r"",
         }
     }
+
+
+def handle_core_functionality(additional_fn, inputs, history, chatbot):
+    import core_functional
+    importlib.reload(core_functional)    # 热更新prompt
+    core_functional = core_functional.get_core_functions()
+    if "PreProcess" in core_functional[additional_fn]: inputs = core_functional[additional_fn]["PreProcess"](inputs)  # 获取预处理函数（如果有的话）
+    inputs = core_functional[additional_fn]["Prefix"] + inputs + core_functional[additional_fn]["Suffix"]
+    if core_functional[additional_fn].get("AutoClearHistory", False):
+        history = []
+        chatbot.append((f'[{additional_fn}] 是否已清空历史消息？', "[Local Message] 已清空所有历史消息。"))
+    return inputs, history
