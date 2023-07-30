@@ -113,4 +113,5 @@ def handle_core_functionality(additional_fn, inputs, history, chatbot):
     inputs = core_functional[additional_fn]["Prefix"] + inputs + core_functional[additional_fn]["Suffix"]
     if core_functional[additional_fn].get("AutoClearHistory", False):
         history = []
+        chatbot.append((f'[{additional_fn}] 是否已清空历史消息？', "[Local Message] 已清空所有历史消息。"))
     return inputs, history
