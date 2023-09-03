@@ -298,9 +298,15 @@ Tip：不指定文件直接点击 `载入对话历史存档` 可以查看历史h
 <img src="https://github.com/binary-husky/gpt_academic/assets/96192199/b6799499-b6fb-4f0c-9c8e-1b441872f4e8" width="500" >
 </div>
 
+12. 虚空终端
+<div align="center">
+<img src="https://github.com/binary-husky/gpt_academic/assets/96192199/66f1b044-e9ff-4eed-9126-5d4f3668f1ed" width="500" >
+</div>
+
 
 ### II：版本:
-- version 3.5(Todo): 使用自然语言调用本项目的所有函数插件（高优先级）
+- version 3.60（todo）: 优化虚空终端，引入code interpreter和更多插件
+- version 3.50: 使用自然语言调用本项目的所有函数插件（虚空终端），支持插件分类，改进UI，设计新主题
 - version 3.49: 支持百度千帆平台和文心一言
 - version 3.48: 支持阿里达摩院通义千问，上海AI-Lab书生，讯飞星火
 - version 3.46: 支持完全脱手操作的实时语音对话
