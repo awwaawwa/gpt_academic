@@ -265,13 +265,6 @@ def predict(inputs, llm_kwargs, plugin_kwargs, chatbot, history=[], system_promp
                     chunk = get_full_error(chunk, stream_response)
                     chunk_decoded = chunk.decode()
                     error_msg = chunk_decoded
-                    if "reduce the length" in error_msg:
-                        model = llm_kwargs.get('llm_model', None)
-                        if model == 'gpt-3.5-turbo':
-                            print("切换到gpt-3.5-turbo-16k")
-                            llm_kwargs['llm_model'] = 'gpt-3.5-turbo-16k'
-                            yield from predict(inputs, llm_kwargs, plugin_kwargs, chatbot, history,system_prompt,stream,additional_fn)
-                            return
                     chatbot, history = handle_error(inputs, llm_kwargs, chatbot, history, chunk_decoded, error_msg)
                     yield from update_ui(chatbot=chatbot, history=history, msg="Json异常" + error_msg) # 刷新界面
                     print(error_msg)
