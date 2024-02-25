@@ -2,8 +2,8 @@
     以下所有配置也都支持利用环境变量覆写，环境变量配置格式见docker-compose.yml。
     读取优先级：环境变量 > config_private.py > config.py
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-    All the following configurations also support using environment variables to override, 
-    and the environment variable configuration format can be seen in docker-compose.yml. 
+    All the following configurations also support using environment variables to override,
+    and the environment variable configuration format can be seen in docker-compose.yml.
     Configuration reading priority: environment variable > config_private.py > config.py
 """
 
@@ -33,7 +33,7 @@ else:
 # ------------------------------------ 以下配置可以优化体验, 但大部分场合下并不需要修改 ------------------------------------
 
 # 重新URL重新定向，实现更换API_URL的作用（高危设置! 常规情况下不要修改! 通过修改此设置，您将把您的API-KEY和对话隐私完全暴露给您设定的中间人！）
-# 格式: API_URL_REDIRECT = {"https://api.openai.com/v1/chat/completions": "在这里填写重定向的api.openai.com的URL"} 
+# 格式: API_URL_REDIRECT = {"https://api.openai.com/v1/chat/completions": "在这里填写重定向的api.openai.com的URL"}
 # 举例: API_URL_REDIRECT = {"https://api.openai.com/v1/chat/completions": "https://reverse-proxy-url/v1/chat/completions"}
 API_URL_REDIRECT = {}
 
@@ -66,7 +66,7 @@ LAYOUT = "LEFT-RIGHT"   # "LEFT-RIGHT"（左右布局） # "TOP-DOWN"（上下�
 
 
 # 暗色模式 / 亮色模式
-DARK_MODE = True        
+DARK_MODE = True
 
 
 # 发送请求到OpenAI后，等待多久判定为超时
@@ -86,15 +86,17 @@ DEFAULT_FN_GROUPS = ['对话', '编程', '学术', '智能体']
 
 
 # 模型选择是 (注意: LLM_MODEL是默认选中的模型, 它*必须*被包含在AVAIL_LLM_MODELS列表中 )
-LLM_MODEL = "gpt-3.5-turbo" # 可选 ↓↓↓
-AVAIL_LLM_MODELS = ["gpt-3.5-turbo-1106","gpt-4-1106-preview","gpt-4-vision-preview",
-                    "gpt-3.5-turbo-16k", "gpt-3.5-turbo", "azure-gpt-3.5",
-                    "api2d-gpt-3.5-turbo", 'api2d-gpt-3.5-turbo-16k',
-                    "gpt-4", "gpt-4-32k", "azure-gpt-4", "api2d-gpt-4",
-                    "chatglm3", "moss", "claude-2"]
-# P.S. 其他可用的模型还包括 ["zhipuai", "qianfan", "deepseekcoder", "llama2", "qwen-local", "gpt-3.5-turbo-0613", "gpt-3.5-turbo-16k-0613",  "gpt-3.5-random"
+LLM_MODEL = "gpt-3.5-turbo-16k" # 可选 ↓↓↓
+AVAIL_LLM_MODELS = ["gpt-4-1106-preview", "gpt-4-turbo-preview", "gpt-4-vision-preview",
+                    "gpt-3.5-turbo-1106", "gpt-3.5-turbo-16k", "gpt-3.5-turbo", "azure-gpt-3.5",
+                    "gpt-4", "gpt-4-32k", "azure-gpt-4", "glm-4", "glm-3-turbo",
+                    "gemini-pro", "chatglm3", "claude-2"]
+# P.S. 其他可用的模型还包括 [
+# "moss", "qwen-turbo", "qwen-plus", "qwen-max"
+# "zhipuai", "qianfan", "deepseekcoder", "llama2", "qwen-local", "gpt-3.5-turbo-0613",
+# "gpt-3.5-turbo-16k-0613",  "gpt-3.5-random", "api2d-gpt-3.5-turbo", 'api2d-gpt-3.5-turbo-16k',
 # "spark", "sparkv2", "sparkv3", "chatglm_onnx", "claude-1-100k", "claude-2", "internlm", "jittorllms_pangualpha", "jittorllms_llama"
-# “qwen-turbo", "qwen-plus", "qwen-max"]
+# ]
 
 
 # 定义界面上“询问多个GPT模型”插件应该使用哪些模型，请从AVAIL_LLM_MODELS中选择，并在不同模型之间用`&`间隔，例如"gpt-3.5-turbo&chatglm3&azure-gpt-4"
@@ -156,7 +158,7 @@ API_ORG = ""
 
 
 # 如果需要使用Slack Claude，使用教程详情见 request_llms/README.md
-SLACK_CLAUDE_BOT_ID = ''   
+SLACK_CLAUDE_BOT_ID = ''
 SLACK_CLAUDE_USER_TOKEN = ''
 
 
@@ -193,15 +195,30 @@ XFYUN_API_KEY = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
 # 接入智谱大模型
 ZHIPUAI_API_KEY = ""
-ZHIPUAI_MODEL = "chatglm_turbo"
+ZHIPUAI_MODEL = "" # 此选项已废弃，不再需要填写
+
+
+# # 火山引擎YUNQUE大模型
+# YUNQUE_SECRET_KEY = ""
+# YUNQUE_ACCESS_KEY = ""
+# YUNQUE_MODEL = ""
 
 
 # Claude API KEY
 ANTHROPIC_API_KEY = ""
 
 
+# Mathpix 拥有执行PDF的OCR功能，但是需要注册账号
+MATHPIX_APPID = ""
+MATHPIX_APPKEY = ""
+
+
 # 自定义API KEY格式
 CUSTOM_API_KEY_PATTERN = r'.{2}-[a-zA-Z0-9]{48}$'
+
+
+# Google Gemini API-Key
+GEMINI_API_KEY = ''
 
 
 # HUGGINGFACE的TOKEN，下载LLAMA时起作用 https://huggingface.co/docs/hub/security-tokens
@@ -212,8 +229,8 @@ HUGGINGFACE_ACCESS_TOKEN = "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"
 # 获取方法：复制以下空间https://huggingface.co/spaces/qingxu98/grobid，设为public，然后GROBID_URL = "https://(你的hf用户名如qingxu98)-(你的填写的空间名如grobid).hf.space"
 GROBID_URLS = [
     "https://qingxu98-grobid.hf.space","https://qingxu98-grobid2.hf.space","https://qingxu98-grobid3.hf.space",
-    "https://qingxu98-grobid4.hf.space","https://qingxu98-grobid5.hf.space", "https://qingxu98-grobid6.hf.space", 
-    "https://qingxu98-grobid7.hf.space", "https://qingxu98-grobid8.hf.space", 
+    "https://qingxu98-grobid4.hf.space","https://qingxu98-grobid5.hf.space", "https://qingxu98-grobid6.hf.space",
+    "https://qingxu98-grobid7.hf.space", "https://qingxu98-grobid8.hf.space",
 ]
 
 
@@ -234,7 +251,7 @@ PATH_LOGGING = "gpt_log"
 
 
 # 除了连接OpenAI之外，还有哪些场合允许使用代理，请勿修改
-WHEN_TO_USE_PROXY = ["Download_LLM", "Download_Gradio_Theme", "Connect_Grobid", 
+WHEN_TO_USE_PROXY = ["Download_LLM", "Download_Gradio_Theme", "Connect_Grobid",
                      "Warmup_Modules", "Nougat_Download", "AutoGen"]
 
 
@@ -285,18 +302,20 @@ NUM_CUSTOM_BASIC_BTN = 4
 │   ├── BAIDU_CLOUD_API_KEY
 │   └── BAIDU_CLOUD_SECRET_KEY
 │
-├── "zhipuai" 智谱AI大模型chatglm_turbo
-│   ├── ZHIPUAI_API_KEY
-│   └── ZHIPUAI_MODEL
+├── "glm-4", "glm-3-turbo", "zhipuai" 智谱AI大模型
+│   └── ZHIPUAI_API_KEY
 │
 ├── "qwen-turbo" 等通义千问大模型
 │   └──  DASHSCOPE_API_KEY
+│
+├── "Gemini"
+│   └──  GEMINI_API_KEY
 │
 └── "newbing" Newbing接口不再稳定，不推荐使用
     ├── NEWBING_STYLE
     └── NEWBING_COOKIES
 
-    
+
 本地大模型示意图
 │
 ├── "chatglm3"
@@ -336,6 +355,9 @@ NUM_CUSTOM_BASIC_BTN = 4
 │   └── ALIYUN_SECRET
 │
 └── PDF文档精准解析
-    └── GROBID_URLS
+    ├── GROBID_URLS
+    ├── MATHPIX_APPID
+    └── MATHPIX_APPKEY
+
 
 """
