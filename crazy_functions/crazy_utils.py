@@ -144,6 +144,7 @@ def can_multi_process(llm) -> bool:
         if llm.startswith('api2d-'): return True
         if llm.startswith('azure-'): return True
         if llm.startswith('spark'): return True
+        if llm.startswith('claude'): return True
         if llm.startswith('zhipuai') or llm.startswith('glm-'): return True
         return False
 
