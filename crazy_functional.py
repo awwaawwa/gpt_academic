@@ -220,7 +220,7 @@ def get_crazy_functions():
         "批量总结PDF文档": {
             "Group": "学术",
             "Color": "stop",
-            "AsButton": False,  # 加入下拉菜单中
+            "AsButton": True,  # 加入下拉菜单中
             "Info": "批量总结PDF文档的内容 | 输入参数为路径",
             "Function": HotReload(批量总结PDF文档),
         },
@@ -241,7 +241,7 @@ def get_crazy_functions():
         "英文Latex项目全文润色（输入路径或上传压缩包）": {
             "Group": "学术",
             "Color": "stop",
-            "AsButton": False,  # 加入下拉菜单中
+            "AsButton": True,  # 加入下拉菜单中
             "Info": "对英文Latex项目全文进行润色处理 | 输入参数为路径或上传压缩包",
             "Function": HotReload(Latex英文润色),
         },
@@ -249,7 +249,7 @@ def get_crazy_functions():
         "中文Latex项目全文润色（输入路径或上传压缩包）": {
             "Group": "学术",
             "Color": "stop",
-            "AsButton": False,  # 加入下拉菜单中
+            "AsButton": True,  # 加入下拉菜单中
             "Info": "对中文Latex项目全文进行润色处理 | 输入参数为路径或上传压缩包",
             "Function": HotReload(Latex中文润色),
         },
@@ -549,7 +549,7 @@ def get_crazy_functions():
                 "Arxiv论文精细翻译（输入arxivID）[需Latex]": {
                     "Group": "学术",
                     "Color": "stop",
-                    "AsButton": False,
+                    "AsButton": True,
                     "AdvancedArgs": True,
                     "ArgsReminder": r"如果有必要, 请在此处给出自定义翻译命令, 解决部分词汇翻译不准确的问题。 "
                                     r"例如当单词'agent'翻译不准确时, 请尝试把以下指令复制到高级参数区: "
