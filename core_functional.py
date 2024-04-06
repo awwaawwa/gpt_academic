@@ -139,13 +139,12 @@ def get_core_functions():
             "Prefix":   r"以下是一段OCR出来的文字，请校正错误：" + "\n\n",
             "Suffix":   "",
             "AutoClearHistory": True,
-
         },
         "化简答案": {
             "Prefix":   r"",
-            "Suffix":   "\n\n你是一名专业网络工程师，请阅读以上问题与解析，尽可能精简出一份方便记忆的答案：",
+            "Suffix":   "\n\n你是一名即将期末考试的大学生，请阅读以上问题与解析，尽可能精简出一份方便记忆的答案：",
             "AutoClearHistory": True,
-        },        
+        },
         "提取重点": {
             "Prefix":   r"请提取以下文本的重点：" + '\n\n',
             "Suffix":   "",
