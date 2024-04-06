@@ -125,7 +125,6 @@ def get_core_functions():
             "Suffix":   r"",
             "Visible":  False,
         },
-
         "解释代码": {
             "Prefix":   r"请解释以下代码：" + "\n```\n",
             "Suffix":   "\n```\n",
