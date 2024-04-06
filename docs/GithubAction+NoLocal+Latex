@@ -13,7 +13,7 @@ ENV PATH "$PATH:/usr/local/texlive/2026/bin/x86_64-linux"
 # 指定路径
 WORKDIR /gpt
 
-RUN pip3 install openai numpy arxiv rich colorama Markdown pygments pymupdf python-docx pdfminer python-markdown-math pymdown-extensions websocket-client beautifulsoup4 prompt_toolkit latex2mathml mdtex2html pyautogen
+# RUN pip3 install openai numpy arxiv rich colorama Markdown pygments pymupdf python-docx pdfminer python-markdown-math pymdown-extensions websocket-client beautifulsoup4 prompt_toolkit latex2mathml mdtex2html pyautogen
 # RUN pip3 install nougat-ocr
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
