@@ -2,6 +2,7 @@
 def check_proxy(proxies):
     import requests
     proxies_https = proxies['https'] if proxies is not None else '无'
+    proxies_https = '[HIDDEN]'
     try:
         response = requests.get("https://ipapi.co/json/", proxies=proxies, timeout=4)
         data = response.json()
