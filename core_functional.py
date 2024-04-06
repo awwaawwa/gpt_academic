@@ -37,6 +37,7 @@ def get_core_functions():
 
 
         "总结绘制脑图": {
+            "Visible": False,
             # 前缀，会被加在你的输入之前。例如，用来描述你的要求，例如翻译、解释代码、润色等等
             "Prefix":   '''"""\n\n''',
             # 后缀，会被加在你的输入之后。例如，配合前缀可以把你的输入内容用引号圈起来
@@ -67,6 +68,7 @@ def get_core_functions():
 
 
         "查找语法错误": {
+            "AutoClearHistory": True,
             "Prefix":   r"Help me ensure that the grammar and the spelling is correct. "
                         r"Do not try to polish the text, if no mistake is found, tell me that this paragraph is good. "
                         r"If you find grammar or spelling mistakes, please list mistakes you find in a two-column markdown table, "
@@ -88,12 +90,14 @@ def get_core_functions():
 
 
         "中译英": {
+            "AutoClearHistory": True,
             "Prefix":   r"Please translate following sentence to English:" + "\n\n",
             "Suffix":   r"",
         },
 
 
         "学术英中互译": {
+            "AutoClearHistory": True,
             "Prefix":   build_gpt_academic_masked_string_langbased(
                             text_show_chinese=
                                 r"I want you to act as a scientific English-Chinese translator, "
@@ -115,11 +119,13 @@ def get_core_functions():
 
 
         "英译中": {
+            "AutoClearHistory": True,
             "Prefix":   r"翻译成地道的中文：" + "\n\n",
             "Suffix":   r"",
             "Visible":  False,
         },
         "找图片": {
+            "AutoClearHistory": True,
             "Prefix":   r"我需要你找一张网络图片。使用Unsplash API(https://source.unsplash.com/960x640/?<英语关键词>)获取图片URL，"
                         r"然后请使用Markdown格式封装，并且不要有反斜线，不要用代码块。现在，请按以下描述给我发送图片：" + "\n\n",
             "Suffix":   r"",
@@ -159,6 +165,7 @@ def get_core_functions():
 
 
         "参考文献转Bib": {
+            "AutoClearHistory": True,
             "Prefix":   r"Here are some bibliography items, please transform them into bibtex style."
                         r"Note that, reference styles maybe more than one kind, you should transform each item correctly."
                         r"Items need to be transformed:" + "\n\n",
