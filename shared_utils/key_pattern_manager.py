@@ -61,8 +61,10 @@ def select_api_key(keys, llm_model):
     import random
     avail_key_list = []
     key_list = keys.split(',')
+    
+    return random.choice(key_list)
 
-    if llm_model.startswith('gpt-') or llm_model.startswith('one-api-') or llm_model.startswith('claude'):
+    if llm_model.startswith('gpt-') or llm_model.startswith('one-api-') or llm_model.startswith('claude') or llm_model.startswith('local'):
         for k in key_list:
             if is_openai_api_key(k): avail_key_list.append(k)
 

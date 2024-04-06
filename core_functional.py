@@ -30,7 +30,7 @@ def get_core_functions():
             # [4] 按钮是否可见 (可选参数，默认 True，即可见)
             "Visible": True,
             # [5] 是否在触发时清除历史 (可选参数，默认 False，即不处理之前的对话历史)
-            "AutoClearHistory": False,
+            "AutoClearHistory": True,
             # [6] 文本预处理 （可选参数，默认 None，举例：写个函数移除所有的换行符）
             "PreProcess": None,
         },
@@ -152,6 +152,12 @@ def get_core_functions():
         },        
         "提取重点": {
             "Prefix":   r"请提取以下文本的重点：" + '\n\n',
+            "Suffix":   "",
+            "AutoClearHistory": True,
+        },
+        
+        "降重": {
+            "Prefix":   r"请将这段话改写，通过调整语序增减字数，替换同义词等方式，避免与原文出现连续 8 个字相同的句子，使这段话更加具有逻辑符合论文的规范：" + '\n\n',
             "Suffix":   "",
             "AutoClearHistory": True,
         },
