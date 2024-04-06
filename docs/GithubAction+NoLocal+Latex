@@ -15,13 +15,11 @@ WORKDIR /gpt
 
 RUN pip3 install openai numpy arxiv rich colorama Markdown pygments pymupdf python-docx pdfminer python-markdown-math pymdown-extensions websocket-client beautifulsoup4 prompt_toolkit latex2mathml mdtex2html pyautogen
 # RUN pip3 install nougat-ocr
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 
 # 装载项目文件
 COPY . .
-
-
-# 安装依赖
-RUN pip3 install -r requirements.txt
 
 # 可选步骤，用于预热模块
 RUN python3  -c 'from check_proxy import warm_up_modules; warm_up_modules()'
