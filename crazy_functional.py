@@ -214,7 +214,7 @@ def get_crazy_functions():
         "询问多个GPT模型": {
             "Group": "对话",
             "Color": "stop",
-            "AsButton": True,
+            "AsButton": False,
             "Function": HotReload(同时问询),
         },
         "批量总结PDF文档": {
