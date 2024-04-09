@@ -147,6 +147,11 @@ def get_core_functions():
             "Suffix":   "",
             "AutoClearHistory": True,
         },
+        "SQL表创建转报告表格": {
+            "Prefix":   r"请根据以下sql，生成一个表格。表格表头为：数据元素（抽取sql的备注）、数据采集方式（全为自动生成）、说明（是否必须输入、是否为主键）。\nsql为：" + '\n\n',
+            "Suffix":   "",
+            "AutoClearHistory": True,
+        },
         "参考文献转Bib": {
             "AutoClearHistory": True,
             "Prefix":   r"Here are some bibliography items, please transform them into bibtex style."
