@@ -148,7 +148,7 @@ def get_core_functions():
             "AutoClearHistory": True,
         },
         "SQL表创建转报告表格": {
-            "Prefix":   r"请根据以下sql，生成一个表格。表格表头为：数据元素（抽取sql的备注）、数据采集方式（全为自动生成）、说明（是否必须输入、是否为主键）。\nsql为：" + '\n\n',
+            "Prefix":   r"请根据以下sql，生成一个表格。表格表头为：数据元素（抽取sql的COMMENT）、数据采集方式（全为自动生成）、说明（是否必须输入、是否为主键）。\nsql为：" + '\n\n',
             "Suffix":   "",
             "AutoClearHistory": True,
         },
