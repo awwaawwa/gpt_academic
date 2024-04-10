@@ -624,22 +624,22 @@ def get_crazy_functions():
         print(trimmed_format_exc())
         print("Load function plugin failed")
 
-    try:
-        from crazy_functions.函数动态生成 import 函数动态生成
+    # try:
+    #     from crazy_functions.函数动态生成 import 函数动态生成
 
-        function_plugins.update(
-            {
-                "动态代码解释器（CodeInterpreter）": {
-                    "Group": "智能体",
-                    "Color": "stop",
-                    "AsButton": False,
-                    "Function": HotReload(函数动态生成),
-                }
-            }
-        )
-    except:
-        print(trimmed_format_exc())
-        print("Load function plugin failed")
+    #     function_plugins.update(
+    #         {
+    #             "动态代码解释器（CodeInterpreter）": {
+    #                 "Group": "智能体",
+    #                 "Color": "stop",
+    #                 "AsButton": False,
+    #                 "Function": HotReload(函数动态生成),
+    #             }
+    #         }
+    #     )
+    # except:
+    #     print(trimmed_format_exc())
+    #     print("Load function plugin failed")
 
     try:
         from crazy_functions.多智能体 import 多智能体终端
