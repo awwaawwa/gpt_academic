@@ -150,6 +150,7 @@ def get_core_functions():
         "DeepSeekMath解题（记得切换模型）":{
             "Prefix":   r"",
             "Suffix":   "\n 请通过逐步推理来解答问题，并把最终答案放置于\\boxed{} 中。",
+            "Model": "t1c/deepseek-math-7b-rl:latest",
             "AutoClearHistory": True,
         },
         "生成代码DMathematica代码，解决数学问题": {
