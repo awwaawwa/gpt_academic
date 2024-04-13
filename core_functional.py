@@ -147,7 +147,7 @@ def get_core_functions():
             "Suffix":   "",
             "AutoClearHistory": True,
         },
-        "DeepSeekMath解题（记得切换模型）":{
+        "DeepSeekMath解数学题":{
             "Prefix":   r"",
             "Suffix":   "\n 请通过逐步推理来解答问题，并把最终答案放置于\\boxed{} 中。",
             "Model": "t1c/deepseek-math-7b-rl:latest",
