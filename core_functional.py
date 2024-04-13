@@ -153,7 +153,7 @@ def get_core_functions():
             "Model": "t1c/deepseek-math-7b-rl:latest",
             "AutoClearHistory": True,
         },
-        "生成代码DMathematica代码，解决数学问题": {
+        "生成代码Mathematica代码，解决数学问题": {
             "Prefix":   r"请生成Wolfram Mathematica代码来解答以下问题：" + "\n\n",
             "Suffix":   "",
             "AutoClearHistory": True,
