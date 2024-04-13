@@ -152,7 +152,7 @@ def get_core_functions():
             "Suffix":   "\n 请通过逐步推理来解答问题，并把最终答案放置于\\boxed{} 中。",
             "AutoClearHistory": True,
         },
-        "DeepSeekMath生成Mathematica（记得切换模型）": {
+        "生成代码DMathematica代码，解决数学问题": {
             "Prefix":   r"请生成Wolfram Mathematica代码来解答以下问题：" + "\n\n",
             "Suffix":   "",
             "AutoClearHistory": True,
