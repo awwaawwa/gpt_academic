@@ -153,8 +153,8 @@ def get_core_functions():
             "AutoClearHistory": True,
         },
         "DeepSeekMath生成Mathematica（记得切换模型）": {
-            "Prefix":   r"",
-            "Suffix":   "\n 请通过逐步推理来生成Mathematica代码解答问题。",
+            "Prefix":   r"请生成Wolfram Mathematica代码来解答以下问题：" + "\n\n",
+            "Suffix":   "",
             "AutoClearHistory": True,
         },
         "参考文献转Bib": {
