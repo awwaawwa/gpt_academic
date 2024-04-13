@@ -147,6 +147,11 @@ def get_core_functions():
             "Suffix":   "",
             "AutoClearHistory": True,
         },
+        "DeepSeekMath解题（记得切换模型）":{
+            "Prefix":   r"",
+            "Suffix":   "\n 请通过逐步推理来解答问题，并把最终答案放置于\\boxed{} 中。",
+            "AutoClearHistory": True,
+        },
         "参考文献转Bib": {
             "AutoClearHistory": True,
             "Prefix":   r"Here are some bibliography items, please transform them into bibtex style."
