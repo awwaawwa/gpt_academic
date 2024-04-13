@@ -8,6 +8,7 @@
     具备多线程调用能力的函数：在函数插件中被调用，灵活而简洁
     2. predict_no_ui_long_connection(...)
 """
+from sys import exception
 import tiktoken, copy, re
 from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
@@ -144,6 +145,14 @@ model_info = {
     "qwen:32b": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
+        "endpoint": openai_endpoint,
+        "max_token": 8192,
+        "tokenizer": tokenizer_gpt35,
+        "token_cnt": get_token_num_gpt35,
+    },
+    "t1c/deepseek-math-7b-rl:latest": {
+        "fn_with_ui": chatgpt_ui,
+        "fn_without_ui": None,
         "endpoint": openai_endpoint,
         "max_token": 8192,
         "tokenizer": tokenizer_gpt35,
