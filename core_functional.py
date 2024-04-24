@@ -158,11 +158,6 @@ def get_core_functions():
             "Suffix":   "",
             "AutoClearHistory": True,
         },
-        "代码转latex公式": {
-            "Prefix":   r"请将以下函数转换为latex公式： " + "\n\n",
-            "Suffix":   "",
-            "AutoClearHistory": True,
-        },
         "参考文献转Bib": {
             "AutoClearHistory": True,
             "Prefix":   r"Here are some bibliography items, please transform them into bibtex style."
