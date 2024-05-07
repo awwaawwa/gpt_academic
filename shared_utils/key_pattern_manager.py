@@ -63,6 +63,9 @@ def what_keys(keys):
 
 
 def select_api_key(keys, llm_model):
+    API_KEY_REDIRECT = get_conf('API_KEY_REDIRECT')
+    if llm_model in API_KEY_REDIRECT:
+        return API_KEY_REDIRECT[llm_model]
     import random
     avail_key_list = []
     key_list = keys.split(',')
