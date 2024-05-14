@@ -45,7 +45,7 @@ AVAIL_LLM_MODELS = ["gpt-4-1106-preview", "gpt-4-turbo-preview", "gpt-4-vision-p
 #   "spark", "sparkv2", "sparkv3", "sparkv3.5",
 #   "qwen-turbo", "qwen-plus", "qwen-max", "qwen-local",
 #   "moonshot-v1-128k", "moonshot-v1-32k", "moonshot-v1-8k",
-#   "gpt-3.5-turbo-0613", "gpt-3.5-turbo-16k-0613", "gpt-3.5-turbo-0125"
+#   "gpt-3.5-turbo-0613", "gpt-3.5-turbo-16k-0613", "gpt-3.5-turbo-0125", "gpt-4o-2024-05-13"
 #   "claude-3-haiku-20240307","claude-3-sonnet-20240229","claude-3-opus-20240229", "claude-2.1", "claude-instant-1.2",
 #   "moss", "llama2", "chatglm_onnx", "internlm", "jittorllms_pangualpha", "jittorllms_llama",
 #   "yi-34b-chat-0205", "yi-34b-chat-200k"
@@ -102,6 +102,10 @@ TIMEOUT_SECONDS = 30
 
 # 网页的端口, -1代表随机端口
 WEB_PORT = -1
+
+
+# 是否自动打开浏览器页面
+AUTO_OPEN_BROWSER = True
 
 
 # 如果OpenAI不响应（网络卡顿、代理失败、KEY失效），重试的次数限制
