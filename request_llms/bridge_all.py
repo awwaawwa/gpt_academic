@@ -984,6 +984,14 @@ if len(AZURE_CFG_ARRAY) > 0:
 for k,v in API_URL_REDIRECT.items():
     if k in model_info:
         model_info[k]['endpoint'] = v
+# -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-=-=
+# -=-=-=-=-=-=-=-=-=- ☝️ 以上是模型路由 -=-=-=-=-=-=-=-=-=
+# -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-=-=
+
+# -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-=-=
+# -=-=-=-=-=-=-= 👇 以下是多模型路由切换函数 -=-=-=-=-=-=-=
+# -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-=-=
+
 
 def LLM_CATCH_EXCEPTION(f):
     """
@@ -1019,13 +1027,11 @@ def predict_no_ui_long_connection(inputs:str, llm_kwargs:dict, history:list, sys
     model = llm_kwargs['llm_model']
     n_model = 1
     if '&' not in model:
-
-        # 如果只询问1个大语言模型：
+        # 如果只询问“一个”大语言模型（多数情况）：
         method = model_info[model]["fn_without_ui"]
         return method(inputs, llm_kwargs, history, sys_prompt, observe_window, console_slience)
     else:
-
-        # 如果同时询问多个大语言模型，这个稍微啰嗦一点，但思路相同，您不必读这个else分支
+        # 如果同时询问“多个”大语言模型，这个稍微啰嗦一点，但思路相同，您不必读这个else分支
         executor = ThreadPoolExecutor(max_workers=4)
         models = model.split('&')
         n_model = len(models)
@@ -1078,8 +1084,26 @@ def predict_no_ui_long_connection(inputs:str, llm_kwargs:dict, history:list, sys
         res = '<br/><br/>\n\n---\n\n'.join(return_string_collect)
         return res
 
+# 根据基础功能区 ModelOverride 参数调整模型类型，用于 `predict` 中
+import importlib
+import core_functional
+def execute_model_override(llm_kwargs, additional_fn, method):
+    functional = core_functional.get_core_functions()
+    if 'ModelOverride' in functional[additional_fn]:
+        # 热更新Prompt & ModelOverride
+        importlib.reload(core_functional)
+        functional = core_functional.get_core_functions()
+        model_override = functional[additional_fn]['ModelOverride']
+        if model_override not in model_info:
+            raise ValueError(f"模型覆盖参数 '{model_override}' 指向一个暂不支持的模型，请检查配置文件。")
+        method = model_info[model_override]["fn_with_ui"]
+        llm_kwargs['llm_model'] = model_override
+        return llm_kwargs, additional_fn, method
+    # 默认返回原参数
+    return llm_kwargs, additional_fn, method
 
-def predict(inputs:str, llm_kwargs:dict, *args, **kwargs):
+def predict(inputs:str, llm_kwargs:dict, plugin_kwargs:dict, chatbot,
+            history:list=[], system_prompt:str='', stream:bool=True, additional_fn:str=None):
     """
     发送至LLM，流式获取输出。
     用于基础的对话功能。
@@ -1098,17 +1122,11 @@ def predict(inputs:str, llm_kwargs:dict, *args, **kwargs):
     """
 
     inputs = apply_gpt_academic_string_mask(inputs, mode="show_llm")
+
     method = model_info[llm_kwargs['llm_model']]["fn_with_ui"]  # 如果这里报错，检查config中的AVAIL_LLM_MODELS选项
 
-    if len(args) > 5 and isinstance(args[5],str):
-        additional_fn = args[5]
-        import core_functional
-        import importlib
-        importlib.reload(core_functional)    # 热更新prompt
-        core_functional = core_functional.get_core_functions()
-        if 'Model' in core_functional[additional_fn]:
-            method = model_info[core_functional[additional_fn]['Model']]["fn_with_ui"]
-            llm_kwargs['llm_model'] = core_functional[additional_fn]['Model']
-    
-    yield from method(inputs, llm_kwargs, *args, **kwargs)
+    if additional_fn: # 根据基础功能区 ModelOverride 参数调整模型类型
+        llm_kwargs, additional_fn, method = execute_model_override(llm_kwargs, additional_fn, method)
+
+    yield from method(inputs, llm_kwargs, plugin_kwargs, chatbot, history, system_prompt, stream, additional_fn)
 
