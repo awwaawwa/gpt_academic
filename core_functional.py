@@ -152,7 +152,7 @@ def get_core_functions():
         "DeepSeekMath解数学题":{
             "Prefix":   r"",
             "Suffix":   "\n 请通过逐步推理来解答问题，并把最终答案放置于\\boxed{} 中。",
-            "Model": "t1c/deepseek-math-7b-rl:latest",
+            "ModelOverride": "t1c/deepseek-math-7b-rl:latest",
             "AutoClearHistory": True,
         },
         "生成代码Mathematica代码，解决数学问题": {
@@ -167,6 +167,21 @@ def get_core_functions():
                         r"Items need to be transformed:" + "\n\n",
             "Visible":  False,
             "Suffix":   r"",
+        },        
+        "整理代码&添加注释": {
+            "Prefix":   r"请整理以下代码，并添加注释：" + "\n\n",
+            "Suffix":   "",
+            "AutoClearHistory": True,
+        },
+        "续写":{
+            "Prefix":   r"",
+            "Suffix":   "\n\n根据你所掌握的关于计算机的知识,续写上面的内容,使得内容更加丰富完整。",
+            "AutoClearHistory": True,
+        },
+        "扩写":{
+            "Prefix":   r"",
+            "Suffix":   "\n\n根据你所掌握的关于计算机的知识,扩写上面的内容,使得内容更加丰富完整。",
+            "AutoClearHistory": True,
         }
     }
 
