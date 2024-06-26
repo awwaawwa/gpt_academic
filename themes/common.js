@@ -831,39 +831,44 @@ function limit_scroll_position() {
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 function loadLive2D() {
-    try {
-        $("<link>").attr({ href: "file=themes/waifu_plugin/waifu.css", rel: "stylesheet", type: "text/css" }).appendTo('head');
-        $('body').append('<div class="waifu"><div class="waifu-tips"></div><canvas id="live2d" class="live2d"></canvas><div class="waifu-tool"><span class="fui-home"></span> <span class="fui-chat"></span> <span class="fui-eye"></span> <span class="fui-user"></span> <span class="fui-photo"></span> <span class="fui-info-circle"></span> <span class="fui-cross"></span></div></div>');
-        $.ajax({
-            url: "file=themes/waifu_plugin/waifu-tips.js", dataType: "script", cache: true, success: function () {
-                $.ajax({
-                    url: "file=themes/waifu_plugin/live2d.js", dataType: "script", cache: true, success: function () {
-                        /* 可直接修改部分参数 */
-                        live2d_settings['hitokotoAPI'] = "hitokoto.cn";  // 一言 API
-                        live2d_settings['modelId'] = 3;                  // 默认模型 ID
-                        live2d_settings['modelTexturesId'] = 44;          // 默认材质 ID
-                        live2d_settings['modelStorage'] = false;         // 不储存模型 ID
-                        live2d_settings['waifuSize'] = '210x187';
-                        live2d_settings['waifuTipsSize'] = '187x52';
-                        live2d_settings['canSwitchModel'] = true;
-                        live2d_settings['canSwitchTextures'] = true;
-                        live2d_settings['canSwitchHitokoto'] = false;
-                        live2d_settings['canTakeScreenshot'] = false;
-                        live2d_settings['canTurnToHomePage'] = false;
-                        live2d_settings['canTurnToAboutPage'] = false;
-                        live2d_settings['showHitokoto'] = false;          // 显示一言
-                        live2d_settings['showF12Status'] = false;         // 显示加载状态
-                        live2d_settings['showF12Message'] = false;        // 显示看板娘消息
-                        live2d_settings['showF12OpenMsg'] = false;        // 显示控制台打开提示
-                        live2d_settings['showCopyMessage'] = false;       // 显示 复制内容 提示
-                        live2d_settings['showWelcomeMessage'] = true;     // 显示进入面页欢迎词
-                        /* 在 initModel 前添加 */
-                        initModel("file=themes/waifu_plugin/waifu-tips.json");
-                    }
-                });
-            }
-        });
-    } catch (err) { console.log("[Error] JQuery is not defined.") }
+    if (document.querySelector(".waifu") )
+    {
+        $('.waifu').show();
+    } else {
+        try {
+            $("<link>").attr({ href: "file=themes/waifu_plugin/waifu.css", rel: "stylesheet", type: "text/css" }).appendTo('head');
+            $('body').append('<div class="waifu"><div class="waifu-tips"></div><canvas id="live2d" class="live2d"></canvas><div class="waifu-tool"><span class="fui-home"></span> <span class="fui-chat"></span> <span class="fui-eye"></span> <span class="fui-user"></span> <span class="fui-photo"></span> <span class="fui-info-circle"></span> <span class="fui-cross"></span></div></div>');
+            $.ajax({
+                url: "file=themes/waifu_plugin/waifu-tips.js", dataType: "script", cache: true, success: function () {
+                    $.ajax({
+                        url: "file=themes/waifu_plugin/live2d.js", dataType: "script", cache: true, success: function () {
+                            /* 可直接修改部分参数 */
+                            live2d_settings['hitokotoAPI'] = "hitokoto.cn";  // 一言 API
+                            live2d_settings['modelId'] = 3;                  // 默认模型 ID
+                            live2d_settings['modelTexturesId'] = 44;          // 默认材质 ID
+                            live2d_settings['modelStorage'] = false;         // 不储存模型 ID
+                            live2d_settings['waifuSize'] = '210x187';
+                            live2d_settings['waifuTipsSize'] = '187x52';
+                            live2d_settings['canSwitchModel'] = true;
+                            live2d_settings['canSwitchTextures'] = true;
+                            live2d_settings['canSwitchHitokoto'] = false;
+                            live2d_settings['canTakeScreenshot'] = false;
+                            live2d_settings['canTurnToHomePage'] = false;
+                            live2d_settings['canTurnToAboutPage'] = false;
+                            live2d_settings['showHitokoto'] = false;          // 显示一言
+                            live2d_settings['showF12Status'] = false;         // 显示加载状态
+                            live2d_settings['showF12Message'] = false;        // 显示看板娘消息
+                            live2d_settings['showF12OpenMsg'] = false;        // 显示控制台打开提示
+                            live2d_settings['showCopyMessage'] = false;       // 显示 复制内容 提示
+                            live2d_settings['showWelcomeMessage'] = true;     // 显示进入面页欢迎词
+                            /* 在 initModel 前添加 */
+                            initModel("file=themes/waifu_plugin/waifu-tips.json");
+                        }
+                    });
+                }
+            });
+        } catch (err) { console.log("[Error] JQuery is not defined.") }
+    }
 }
 
 
@@ -960,7 +965,7 @@ async function GptAcademicJavaScriptInit(dark, prompt, live2d, layout, tts) {
     if (getCookie("js_md_dropdown_cookie")) {
         const cached_model = getCookie("js_md_dropdown_cookie");
         var model_sel = await get_gradio_component("elem_model_sel");
-        // deterine whether the cached model is in the choices
+        // determine whether the cached model is in the choices
         if (model_sel.props.choices.includes(cached_model)){
             // change dropdown
             gpt_academic_gradio_saveload("load", "elem_model_sel", "js_md_dropdown_cookie", null, "str");
@@ -1685,24 +1690,67 @@ function close_current_pop_up_plugin(){
     hide_all_elem();
 }
 
+
 // 生成高级插件的选择菜单
-advanced_plugin_init_code_lib = {}
+plugin_init_info_lib = {}
+function register_plugin_init(key, base64String){
+    // console.log('x')
+    const stringData = atob(base64String);
+    let guiJsonData = JSON.parse(stringData);
+    if (key in plugin_init_info_lib)
+    {
+    }
+    else
+    {
+        plugin_init_info_lib[key] = {};
+    }
+    plugin_init_info_lib[key].info = guiJsonData.Info;
+    plugin_init_info_lib[key].color = guiJsonData.Color;
+    plugin_init_info_lib[key].label = guiJsonData.Label
+    plugin_init_info_lib[key].enable_advanced_arg = guiJsonData.AdvancedArgs;
+    plugin_init_info_lib[key].arg_reminder = guiJsonData.ArgsReminder;
+}
 function register_advanced_plugin_init_code(key, code){
-    advanced_plugin_init_code_lib[key] = code;
+    if (key in plugin_init_info_lib)
+    {
+    }
+    else
+    {
+        plugin_init_info_lib[key] = {};
+    }
+    plugin_init_info_lib[key].secondary_menu_code = code;
 }
 function run_advanced_plugin_launch_code(key){
     // convert js code string to function
-    generate_menu(advanced_plugin_init_code_lib[key], key);
+    generate_menu(plugin_init_info_lib[key].secondary_menu_code, key);
 }
 function on_flex_button_click(key){
-    if (advanced_plugin_init_code_lib.hasOwnProperty(key)){
+    if (plugin_init_info_lib.hasOwnProperty(key) && plugin_init_info_lib[key].hasOwnProperty('secondary_menu_code')){
         run_advanced_plugin_launch_code(key);
     }else{
         document.getElementById("old_callback_btn_for_plugin_exe").click();
     }
 }
+async function run_dropdown_shift(dropdown){
+    let key = dropdown;
+    push_data_to_gradio_component({
+        value: key,
+        variant: plugin_init_info_lib[key].color,
+        info_str: plugin_init_info_lib[key].info,
+        __type__: 'update'
+    }, "elem_switchy_bt", "obj");
 
-
-
-
-
+    if (plugin_init_info_lib[key].enable_advanced_arg){
+        push_data_to_gradio_component({
+            visible: true,
+            label: plugin_init_info_lib[key].label,
+            __type__: 'update'
+        }, "advance_arg_input_legacy", "obj");
+    } else {
+        push_data_to_gradio_component({
+            visible: false,
+            label: plugin_init_info_lib[key].label,
+            __type__: 'update'
+        }, "advance_arg_input_legacy", "obj");
+    }
+}

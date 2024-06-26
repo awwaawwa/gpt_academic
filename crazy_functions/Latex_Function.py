@@ -4,7 +4,7 @@ from functools import partial
 import glob, os, requests, time, json, tarfile
 
 pj = os.path.join
-ARXIV_CACHE_DIR = os.path.expanduser(f"~/arxiv_cache/")
+ARXIV_CACHE_DIR = get_conf("ARXIV_CACHE_DIR")
 
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- 工具函数 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -233,7 +233,7 @@ def pdf2tex_project(pdf_file_path, plugin_kwargs):
 def Latex英文纠错加PDF对比(txt, llm_kwargs, plugin_kwargs, chatbot, history, system_prompt, user_request):
     # <-------------- information about this plugin ------------->
     chatbot.append(["函数插件功能？",
-                    "对整个Latex项目进行纠错, 用latex编译为PDF对修正处做高亮。函数插件贡献者: Binary-Husky。注意事项: 目前仅支持GPT3.5/GPT4，其他模型转化效果未知。目前对机器学习类文献转化效果最好，其他类型文献转化效果未知。仅在Windows系统进行了测试，其他操作系统表现未知。"])
+                    "对整个Latex项目进行纠错, 用latex编译为PDF对修正处做高亮。函数插件贡献者: Binary-Husky。注意事项: 目前对机器学习类文献转化效果最好，其他类型文献转化效果未知。仅在Windows系统进行了测试，其他操作系统表现未知。"])
     yield from update_ui(chatbot=chatbot, history=history)  # 刷新界面
 
     # <-------------- more requirements ------------->
@@ -271,6 +271,8 @@ def Latex英文纠错加PDF对比(txt, llm_kwargs, plugin_kwargs, chatbot, histo
     project_folder = desend_to_extracted_folder_if_exist(project_folder)
 
     # <-------------- move latex project away from temp folder ------------->
+    from shared_utils.fastapi_server import validate_path_safety
+    validate_path_safety(project_folder, chatbot.get_user())
     project_folder = move_project(project_folder, arxiv_id=None)
 
     # <-------------- if merge_translate_zh is already generated, skip gpt req ------------->
@@ -310,7 +312,7 @@ def Latex翻译中文并重新编译PDF(txt, llm_kwargs, plugin_kwargs, chatbot,
     # <-------------- information about this plugin ------------->
     chatbot.append([
         "函数插件功能？",
-        "对整个Latex项目进行翻译, 生成中文PDF。函数插件贡献者: Binary-Husky。注意事项: 此插件Windows支持最佳，Linux下必须使用Docker安装，详见项目主README.md。目前仅支持GPT3.5/GPT4，其他模型转化效果未知。目前对机器学习类文献转化效果最好，其他类型文献转化效果未知。"])
+        "对整个Latex项目进行翻译, 生成中文PDF。函数插件贡献者: Binary-Husky。注意事项: 此插件Windows支持最佳，Linux下必须使用Docker安装，详见项目主README.md。目前对机器学习类文献转化效果最好，其他类型文献转化效果未知。"])
     yield from update_ui(chatbot=chatbot, history=history)  # 刷新界面
 
     # <-------------- more requirements ------------->
@@ -365,6 +367,8 @@ def Latex翻译中文并重新编译PDF(txt, llm_kwargs, plugin_kwargs, chatbot,
     project_folder = desend_to_extracted_folder_if_exist(project_folder)
 
     # <-------------- move latex project away from temp folder ------------->
+    from shared_utils.fastapi_server import validate_path_safety
+    validate_path_safety(project_folder, chatbot.get_user())
     project_folder = move_project(project_folder, arxiv_id)
 
     # <-------------- if merge_translate_zh is already generated, skip gpt req ------------->
@@ -404,7 +408,7 @@ def PDF翻译中文并重新编译PDF(txt, llm_kwargs, plugin_kwargs, chatbot, h
     # <-------------- information about this plugin ------------->
     chatbot.append([
         "函数插件功能？",
-        "将PDF转换为Latex项目，翻译为中文后重新编译为PDF。函数插件贡献者: Marroh。注意事项: 此插件Windows支持最佳，Linux下必须使用Docker安装，详见项目主README.md。目前仅支持GPT3.5/GPT4，其他模型转化效果未知。目前对机器学习类文献转化效果最好，其他类型文献转化效果未知。"])
+        "将PDF转换为Latex项目，翻译为中文后重新编译为PDF。函数插件贡献者: Marroh。注意事项: 此插件Windows支持最佳，Linux下必须使用Docker安装，详见项目主README.md。目前对机器学习类文献转化效果最好，其他类型文献转化效果未知。"])
     yield from update_ui(chatbot=chatbot, history=history)  # 刷新界面
 
     # <-------------- more requirements ------------->
@@ -503,6 +507,8 @@ def PDF翻译中文并重新编译PDF(txt, llm_kwargs, plugin_kwargs, chatbot, h
     project_folder = desend_to_extracted_folder_if_exist(project_folder)
 
     # <-------------- move latex project away from temp folder ------------->
+    from shared_utils.fastapi_server import validate_path_safety
+    validate_path_safety(project_folder, chatbot.get_user())
     project_folder = move_project(project_folder)
 
     # <-------------- set a hash tag for repeat-checking ------------->
