@@ -435,6 +435,7 @@ function chatbotAutoHeight() {
 
 swapped = false;
 function swap_input_area() {
+    return;
     // Get the elements to be swapped
     var element1 = document.querySelector("#input-panel");
     var element2 = document.querySelector("#basic-panel");
