@@ -67,18 +67,18 @@ def get_core_functions():
             "AutoClearHistory": True,
             "Prefix":   r"Help me ensure that the grammar and the spelling is correct. "
                         r"Do not try to polish the text, if no mistake is found, tell me that this paragraph is good. "
-                        r"If you find grammar or spelling mistakes, please list mistakes you find in a two-column markdown table, "
+                        r"If you find grammar or spelling mistakes, please list mistakes you find in a three-column markdown table, "
                         r"put the original text the first column, "
                         r"put the corrected text in the second column and highlight the key words you fixed. "
                         r"Finally, please provide the proofreaded text.""\n\n"
                         r"Example:""\n"
                         r"Paragraph: How is you? Do you knows what is it?""\n"
-                        r"| Original sentence | Corrected sentence |""\n"
-                        r"| :--- | :--- |""\n"
-                        r"| How **is** you? | How **are** you? |""\n"
-                        r"| Do you **knows** what **is** **it**? | Do you **know** what **it** **is** ? |""\n\n"
+                        r"| Original sentence | Corrected sentence | Explanation |""\n"
+                        r"| :--- | :--- | :--- |""\n"
+                        r"| How **is** you? | How **are** you? | some explanation |""\n"
+                        r"| Do you **knows** what **is** **it**? | Do you **know** what **it** **is** ? | some explanation |""\n\n"
                         r"Below is a paragraph from an academic paper. "
-                        r"You need to report all grammar and spelling mistakes as the example before."
+                        r"You need to report all grammar and spelling mistakes as the example before. 请使用中文撰写Explanation，其他内容使用原始语言。"
                         + "\n\n",
             "Suffix":   r"",
             "PreProcess": clear_line_break,    # 预处理：清除换行符
