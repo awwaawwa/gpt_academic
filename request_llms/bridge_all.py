@@ -247,7 +247,7 @@ model_info = {
         "token_cnt": get_token_num_gpt35,
     },
 
-    "gpt-3.5-turbo-1106": { #16k
+    "gpt-3.5-turbo-1106": {  # 16k
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
         "endpoint": openai_endpoint,
@@ -256,7 +256,7 @@ model_info = {
         "token_cnt": get_token_num_gpt35,
     },
 
-    "gpt-3.5-turbo-0125": { #16k
+    "gpt-3.5-turbo-0125": {  # 16k
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
         "endpoint": openai_endpoint,
@@ -283,7 +283,7 @@ model_info = {
         "token_cnt": get_token_num_gpt4,
     },
 
-    "gpt-4-turbo-preview": {
+    "gpt-4o": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
         "endpoint": openai_endpoint,
@@ -293,10 +293,38 @@ model_info = {
         "token_cnt": get_token_num_gpt4,
     },
 
-    "gpt-4-1106-preview": {
+    "gpt-4o-mini": {
+        "fn_with_ui": chatgpt_ui,
+        "fn_without_ui": chatgpt_noui,
+        "endpoint": openai_endpoint,
+        "has_multimodal_capacity": True,
+        "max_token": 128000,
+        "tokenizer": tokenizer_gpt4,
+        "token_cnt": get_token_num_gpt4,
+    },
+
+    "gpt-4o-2024-05-13": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
         "has_multimodal_capacity": True,
+        "endpoint": openai_endpoint,
+        "max_token": 128000,
+        "tokenizer": tokenizer_gpt4,
+        "token_cnt": get_token_num_gpt4,
+    },
+
+    "gpt-4-turbo-preview": {
+        "fn_with_ui": chatgpt_ui,
+        "fn_without_ui": chatgpt_noui,
+        "endpoint": openai_endpoint,
+        "max_token": 128000,
+        "tokenizer": tokenizer_gpt4,
+        "token_cnt": get_token_num_gpt4,
+    },
+
+    "gpt-4-1106-preview": {
+        "fn_with_ui": chatgpt_ui,
+        "fn_without_ui": chatgpt_noui,
         "endpoint": openai_endpoint,
         "max_token": 128000,
         "tokenizer": tokenizer_gpt4,
@@ -315,6 +343,7 @@ model_info = {
     "gpt-4-turbo": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
+        "has_multimodal_capacity": True,
         "endpoint": openai_endpoint,
         "max_token": 128000,
         "tokenizer": tokenizer_gpt4,
@@ -324,30 +353,11 @@ model_info = {
     "gpt-4-turbo-2024-04-09": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
+        "has_multimodal_capacity": True,
         "endpoint": openai_endpoint,
         "max_token": 128000,
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
-    },
-
-    "gpt-4o": {
-        "fn_with_ui": chatgpt_ui,
-        "fn_without_ui": chatgpt_noui,
-        "has_multimodal_capacity": True,
-        "endpoint": openai_endpoint,
-        "max_token": 128000,
-        "tokenizer": tokenizer_gpt4o,
-        "token_cnt": get_token_num_gpt4o,
-    },
-    
-    "gpt-4o-2024-05-13": {
-        "fn_with_ui": chatgpt_ui,
-        "fn_without_ui": chatgpt_noui,
-        "has_multimodal_capacity": True,
-        "endpoint": openai_endpoint,
-        "max_token": 128000,
-        "tokenizer": tokenizer_gpt4o,
-        "token_cnt": get_token_num_gpt4o,
     },
 
     "gpt-3.5-random": {
