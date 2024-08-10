@@ -80,6 +80,7 @@ class WelcomeMessage {
                 url: "https://github.com/binary-husky/gpt_academic/wiki/如何更便捷地接入one-api",
             },
         ];
+        this.static_welcome_message = [];
         this.visible = false;
         this.max_welcome_card_num = 6;
         this.card_array = [];

@@ -162,3 +162,4 @@ objdump*
 *.min.*.js
 
 .DS_Store
+.aider*

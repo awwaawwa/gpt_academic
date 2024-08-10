@@ -149,10 +149,10 @@ def get_core_functions():
             "Suffix":   "",
             "AutoClearHistory": True,
         },
-        "DeepSeekMath解数学题":{
+        "DeepSeekCoder解数学题":{
             "Prefix":   r"",
             "Suffix":   "\n 请通过逐步推理来解答问题，并把最终答案放置于\\boxed{} 中。",
-            "ModelOverride": "t1c/deepseek-math-7b-rl:latest",
+            "ModelOverride": "deepseek-coder",
             "AutoClearHistory": True,
         },
         "生成代码Mathematica代码，解决数学问题": {
