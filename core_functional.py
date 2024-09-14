@@ -149,10 +149,10 @@ def get_core_functions():
             "Suffix":   "",
             "AutoClearHistory": True,
         },
-        "DeepSeekCoder解数学题":{
+        "Qwen2-Math-72B解数学题":{
             "Prefix":   r"",
-            "Suffix":   "\n 请通过逐步推理来解答问题，并把最终答案放置于\\boxed{} 中。",
-            "ModelOverride": "deepseek-coder",
+            "Suffix":   "\n  Please solve the problem step by step and put the final answer in \\boxed{}.",
+            "ModelOverride": "Qwen/Qwen2-Math-72B-Instruct",
             "AutoClearHistory": True,
         },
         "生成代码Mathematica代码，解决数学问题": {
