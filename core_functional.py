@@ -14,13 +14,15 @@ def get_core_functions():
             # [1*] 前缀字符串，会被加在你的输入之前。例如，用来描述你的要求，例如翻译、解释代码、润色等等。
             #      这里填一个提示词字符串就行了，这里为了区分中英文情景搞复杂了一点
             "Prefix":   build_gpt_academic_masked_string_langbased(
-                text_show_english=r"Below is a paragraph from an academic paper. Polish the writing to meet the academic style, "
-                r"improve the spelling, grammar, clarity, concision and overall readability. When necessary, rewrite the whole sentence. "
-                r"Firstly, you should provide the polished paragraph. "
-                r"Secondly, you should list all your modification and explain the reasons to do so in markdown table.",
-                text_show_chinese=r"作为一名中文学术论文写作改进助理，你的任务是改进所提供文本的拼写、语法、清晰、简洁和整体可读性，"
-                r"同时分解长句，减少重复，并提供改进建议。请先提供文本的更正版本，然后在markdown表格中列出修改的内容，并给出修改的理由:"
-            ) + "\n\n",
+                            text_show_english=
+                                r"Below is a paragraph from an academic paper. Polish the writing to meet the academic style, "
+                                r"improve the spelling, grammar, clarity, concision and overall readability. When necessary, rewrite the whole sentence. "
+                                r"Firstly, you should provide the polished paragraph (in English). "
+                                r"Secondly, you should list all your modification and explain the reasons to do so in markdown table.",
+                            text_show_chinese=
+                                r"作为一名中文学术论文写作改进助理，你的任务是改进所提供文本的拼写、语法、清晰、简洁和整体可读性，"
+                                r"同时分解长句，减少重复，并提供改进建议。请先提供文本的更正版本，然后在markdown表格中列出修改的内容，并给出修改的理由:"
+                        ) + "\n\n",
             # [2*] 后缀字符串，会被加在你的输入之后。例如，配合前缀可以把你的输入内容用引号圈起来
             "Suffix":   r"",
             # [3] 按钮颜色 (可选参数，默认 secondary)
