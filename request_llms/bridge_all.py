@@ -1,4 +1,3 @@
-
 """
     该文件中主要包含2个函数，是所有LLM的通用接口，它们会继续向下调用更底层的LLM模型，处理多模型并行等细节
 
@@ -121,6 +120,24 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
+    "Qwen/Qwen2.5-Math-72B-Instruct": {  # 16k
+        "can_multi_thread": True,
+        "fn_with_ui": chatgpt_ui,
+        "fn_without_ui": chatgpt_noui,
+        "endpoint": openai_endpoint,
+        "max_token": 32000,
+        "tokenizer": tokenizer_gpt35,
+        "token_cnt": get_token_num_gpt35,
+    },
+    "Qwen/Qwen2.5-72B-Instruct": {  # 16k
+        "can_multi_thread": True,
+        "fn_with_ui": chatgpt_ui,
+        "fn_without_ui": chatgpt_noui,
+        "endpoint": openai_endpoint,
+        "max_token": 32000,
+        "tokenizer": tokenizer_gpt35,
+        "token_cnt": get_token_num_gpt35,
+    },
     "deepseek-chat": {  # 16k
         "can_multi_thread": True,
         "fn_with_ui": chatgpt_ui,
@@ -227,7 +244,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
     "taichu": {
         "fn_with_ui": taichu_ui,
         "fn_without_ui": taichu_noui,
@@ -236,7 +252,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
     "gpt-3.5-turbo-16k": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -245,7 +260,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
     "gpt-3.5-turbo-0613": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -254,7 +268,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
     "gpt-3.5-turbo-16k-0613": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -263,7 +276,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
     "gpt-3.5-turbo-1106": {  # 16k
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -272,7 +284,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
     "gpt-3.5-turbo-0125": {  # 16k
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -281,7 +292,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
     "gpt-4": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -290,7 +300,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-4-32k": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -299,7 +308,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-4o": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -309,7 +317,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-4o-mini": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -319,7 +326,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-4o-2024-05-13": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -329,7 +335,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-4-turbo-preview": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -338,7 +343,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-4-1106-preview": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -347,7 +351,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-4-0125-preview": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -356,7 +359,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "o1-preview": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -377,7 +379,6 @@ model_info = {
         "openai_disable_system_prompt": True,
         "openai_disable_stream": True,
     },
-
     "gpt-4-turbo": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -387,7 +388,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-4-turbo-2024-04-09": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -397,7 +397,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-3.5-random": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
@@ -406,7 +405,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     "gpt-4-vision-preview": {
         "fn_with_ui": chatgpt_vision_ui,
         "fn_without_ui": chatgpt_vision_noui,
@@ -415,10 +413,8 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
-
     # azure openai
-    "azure-gpt-3.5":{
+    "azure-gpt-3.5": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
         "endpoint": azure_endpoint,
@@ -426,8 +422,7 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
-    "azure-gpt-4":{
+    "azure-gpt-4": {
         "fn_with_ui": chatgpt_ui,
         "fn_without_ui": chatgpt_noui,
         "endpoint": azure_endpoint,
@@ -435,7 +430,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     # 智谱AI
     "glm-4": {
         "fn_with_ui": zhipu_ui,
@@ -470,12 +464,12 @@ model_info = {
         "token_cnt": get_token_num_gpt35,
     },
     "glm-4-flash": {
-         "fn_with_ui": zhipu_ui,
+        "fn_with_ui": zhipu_ui,
         "fn_without_ui": zhipu_noui,
         "endpoint": None,
         "max_token": 10124 * 8,
         "tokenizer": tokenizer_gpt35,
-        "token_cnt": get_token_num_gpt35,       
+        "token_cnt": get_token_num_gpt35,
     },
     "glm-4v": {
         "fn_with_ui": zhipu_ui,
@@ -493,7 +487,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
     # api_2d (此后不需要在此处添加api2d的接口了，因为下面的代码会自动添加)
     "api2d-gpt-4": {
         "fn_with_ui": chatgpt_ui,
@@ -503,7 +496,6 @@ model_info = {
         "tokenizer": tokenizer_gpt4,
         "token_cnt": get_token_num_gpt4,
     },
-
     # 将 chatglm 直接对齐到 chatglm2
     "chatglm": {
         "fn_with_ui": chatglm_ui,
@@ -577,7 +569,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
     # cohere
     "cohere-command-r-plus": {
         "fn_with_ui": cohere_ui,
@@ -588,7 +579,6 @@ model_info = {
         "tokenizer": tokenizer_gpt35,
         "token_cnt": get_token_num_gpt35,
     },
-
 }
 # -=-=-=-=-=-=- 月之暗面 -=-=-=-=-=-=-
 from request_llms.bridge_moonshot import predict as moonshot_ui
@@ -1377,4 +1367,3 @@ def predict(inputs:str, llm_kwargs:dict, plugin_kwargs:dict, chatbot,
         llm_kwargs, additional_fn, method = execute_model_override(llm_kwargs, additional_fn, method)
 
     yield from method(inputs, llm_kwargs, plugin_kwargs, chatbot, history, system_prompt, stream, additional_fn)
-
